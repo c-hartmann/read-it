@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: Read-It
+description: A KDE Plasma Dolphin Service Menu
+logo: https://raw.githubusercontent.com/c-hartmann/read-it/main/assets/images/read-it-logo.png
+show_downloads: true

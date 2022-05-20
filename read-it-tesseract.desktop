@@ -1,0 +1,52 @@
+[Desktop Entry]
+Type=Service
+Name=Extract Text (tesseract)
+MimeType=image/*;
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+Icon=text-flow-into-frame
+Actions=ReadIt
+TryExec=tesseract
+
+[Desktop Action ReadIt]
+Name=Extract text
+Name[de]=Text extrahieren
+Name[fr]=Extraire du texte
+Name[it]=Estrarre il testo
+Name[ar]=استخراج النص
+Name[is]=Draga út texta
+Name[ch]=提取文本
+Name[da/dk?]=Udtrække tekst
+Name[estnisch]=Udtrække tekst
+Name[fi]=Poimia tekstiä
+Name[georgisch]=Ტექსტის ამოღება
+Name[griechisch]=Εξαγωγή κειμένου
+Name[hebräisch]=לחלץ טקסט
+Name[indonesisch]=Ekstrak teks
+Name[irisch]=Sliocht téacs
+Name[isländisch]=Draga út texta
+Name[jp]=テキストを抽出する
+Name[koreanisch]=텍스트 추출
+Name[lettisch]=Izvilkt tekstu
+Name[litauisch]=Ištraukite tekstą
+Name[maori]=Tango kupu
+Name[niederländisch]=Tekst extraheren
+Name[norwegisch]=Trekke ut tekst
+Name[persisch]=Trekke ut tekst
+Name[polnisch]=Wyodrębnij tekst
+Name[pt]=Extrair texto
+Name[swedisch]=Extrahera text
+Name[slowakisch]=Extrahovať text
+Name[spanisch]=Extraer texto
+Name[thailändisch]=แยกข้อความ
+Name[tschechisch]=Extrahovat text
+Name[uk]=Витягти текст
+# Icon=application-text        # =
+# Icon=artistictext-tool       # a  # no display
+# Icon=edit-select-text        # AI # displays arrow up left !?
+# Icon=dialog-text-and-font    # T  # no display
+# Icon=text-convert-to-regular # Tt
+Icon=text-flow-into-frame
+# this extremly simple approch to get the first languge used works ..
+# e.g. for italian, german or english, but not for spanish (es!=spa) :(
+# it also will brutaly overwrite existing files
+Exec=bash -c 'LO="" ; FL="$(tesseract --list-langs | grep ${LANG:0:2})" ; IN="%u" ; OB="${IN%.*}" ; [[ -n "$FL" ]] && LO="-l $FL" ; tesseract ${LO} "${IN}" "${OB}"'
