@@ -5,7 +5,7 @@ MimeType=image/*;
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 Icon=text-flow-into-frame
 Actions=ReadIt
-TryExec=tesseract
+#TryExec=tesseract
 
 [Desktop Action ReadIt]
 Name=Extract text
@@ -46,7 +46,9 @@ Name[uk]=Витягти текст
 # Icon=dialog-text-and-font    # T  # no display
 # Icon=text-convert-to-regular # Tt
 Icon=text-flow-into-frame
-# this extremly simple approch to get the first languge used works ..
-# e.g. for italian, german or english, but not for spanish (es!=spa) :(
-# it also will brutaly overwrite existing files
-Exec=bash -c 'LO="" ; FL="$(tesseract --list-langs | grep ${LANG:0:2})" ; IN="%u" ; OB="${IN%.*}" ; [[ -n "$FL" ]] && LO="-l $FL" ; tesseract ${LO} "${IN}" "${OB}"'
+# this extremly simple approach tries to get the first langauge used.
+# this basicly works e.g. for italian, german or english, but not for
+# spanish (es!=spa) :(
+# it also will brutaly overwrite existing files! :(
+# TODO: it might need an error dialog on error
+Exec=bash -c 'tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; OB="${image%.*}"; tesseract "${image}" "${OB}" ${lang_option} && kdialog --title "Read-It, file created: " --passivepopup "${OB}.txt" 5'
