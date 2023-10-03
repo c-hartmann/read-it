@@ -4,7 +4,7 @@ Name=Extract Text (tesseract)
 MimeType=image/*;
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 Icon=text-flow-into-frame
-Actions=ReadIt
+Actions=ReadIt;ReadIt-PDF;
 #TryExec=tesseract
 
 [Desktop Action ReadIt]
@@ -52,4 +52,51 @@ Icon=text-flow-into-frame
 # it also will brutaly overwrite existing files! :(
 # HINT: text="${image%.*}"; is a modification that removes the filename
 # extension before tesseract appends .txt to the new text file by itself.
-Exec=bash -c 'tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; text="${image}"; tesseract "${image}" "${text}" ${lang_option} && kdialog --title "Read-It, file created: " --passivepopup "${text}.txt" 5'
+Exec=bash -c 'format="txt"; tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; text="${image}"; tesseract "${image}" "${text}" ${lang_option} "$format" && kdialog --title "Read-It, file created: " --passivepopup "${text}.$format" 5'
+
+[Desktop Action ReadIt-PDF]
+Name=Extract text (PDF)
+Name[de]=Text extrahieren (PDF)
+Name[fr]=Extraire du texte (PDF)
+Name[it]=Estrarre il testo (PDF)
+Name[ar]=(PDF) استخراج النص
+Name[is]=Draga út texta (PDF)
+Name[ch]=提取文本 (PDF)
+Name[da]=Udtrække tekst (PDF)
+Name[et]=Udtrække tekst (PDF)
+Name[fi]=Poimia tekstiä (PDF)
+Name[ka]=Ტექსტის ამოღება (PDF)
+Name[el]=Εξαγωγή κειμένου (PDF)
+Name[he]=(PDF) לחלץ טקסט
+Name[id]=Ekstrak teks (PDF)
+Name[ga]=Sliocht téacs (PDF)
+Name[is]=Draga út texta (PDF)
+Name[jp]=テキストを抽出する (PDF)
+Name[ko]=텍스트 추출 (PDF)
+Name[lv]=Izvilkt tekstu (PDF)
+Name[lt]=Ištraukite tekstą (PDF)
+Name[mi]=Tango kupu (PDF)
+Name[nl]=Tekst extraheren (PDF)
+Name[no]=Trekke ut tekst (PDF)
+Name[fa]=Trekke ut tekst (PDF)
+Name[pl]=Wyodrębnij tekst (PDF)
+Name[pt]=Extrair texto (PDF)
+Name[sv]=Extrahera text (PDF)
+Name[sk]=Extrahovať text (PDF)
+Name[es]=Extraer texto (PDF)
+Name[th]=แยกข้อความ (PDF)
+Name[cs]=Extrahovat text (PDF)
+Name[uk]=Витягти текст (PDF)
+# Icon=application-text        # =
+# Icon=artistictext-tool       # a  # no display
+# Icon=edit-select-text        # AI # displays arrow up left !?
+# Icon=dialog-text-and-font    # T  # no display
+# Icon=text-convert-to-regular # Tt
+Icon=text-flow-into-frame
+# this extremly simple approach tries to get the first langauge used.
+# this basicly works e.g. for italian, german or english, but not for
+# spanish (es!=spa) :(
+# it also will brutaly overwrite existing files! :(
+# HINT: text="${image%.*}"; is a modification that removes the filename
+# extension before tesseract appends .txt to the new text file by itself.
+Exec=bash -c 'format="pdf"; tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; text="${image}"; tesseract "${image}" "${text}" ${lang_option} "$format" && kdialog --title "Read-It, file created: " --passivepopup "${text}.$format" 5'
