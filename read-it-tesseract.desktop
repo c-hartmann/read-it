@@ -50,5 +50,6 @@ Icon=text-flow-into-frame
 # this basicly works e.g. for italian, german or english, but not for
 # spanish (es!=spa) :(
 # it also will brutaly overwrite existing files! :(
-# TODO: it might need an error dialog on error
-Exec=bash -c 'tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; OB="${image%.*}"; tesseract "${image}" "${OB}" ${lang_option} && kdialog --title "Read-It, file created: " --passivepopup "${OB}.txt" 5'
+# HINT: text="${image%.*}"; is a modification that removes the filename
+# extension before tesseract appends .txt to the new text file by itself.
+Exec=bash -c 'tryexec="$(type -p tesseract)"; [[ -n "$tryexec" ]] || kdialog --detailederror "tesseract not found, must quit" "tesseract(1) could not be executed from \$PATH. \n\nLikely it is not installed at all. \n\nPlease try to install with your systems package manger and try again."; [[ -n "$tryexec" ]] || exit 1; lang_option=""; lang="$(tesseract --list-langs | grep ${LANG:0:2})"; [[ -n "$lang" ]] && lang_option="-l $lang"; image="%u"; text="${image}"; tesseract "${image}" "${text}" ${lang_option} && kdialog --title "Read-It, file created: " --passivepopup "${text}.txt" 5'
