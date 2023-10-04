@@ -1,20 +1,20 @@
 # Read-It
 
-Convert scanned documents to text with a single right click in KDE Dolphin
+Convert scanned documents to text (or a searchable "sandwich" PDF) with a single right click in KDE Dolphin
 
 ## tl;dr;
 
-Creates SCAN-0001.txt from SCAN-0001.png
+Creates SCAN-0001.png.txt or SCAN-0001.png.pdf from SCAN-0001.png
 
 ## Requirements
 
 Read-It utilizes (and checks) tesseract(1). Pls use your package management system to install.
 
-If tesseract is not installed, Read-It will not show up.
+If tesseract is not installed, Read-It will eiher not show up at all or show an error message.
 
 ## Limitations
 
-Read-It is restricted to reading text from images only. Currently no plans to support PDF as well.
+Read-It is restricted to reading text from images only. Currently no plans to read from PDF as well.
 
 Read-It uses a very rough method to determine the default language to use with tesseract:
 
