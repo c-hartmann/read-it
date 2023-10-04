@@ -10,7 +10,7 @@ Creates SCAN-0001.png.txt or SCAN-0001.png.pdf from SCAN-0001.png
 
 Read-It utilizes (and checks) tesseract(1). Pls use your package management system to install.
 
-If tesseract is not installed, Read-It will eiher not show up at all or show an error message.
+If tesseract is not installed, Read-It will either not show up at all or show an error message.
 
 ## Limitations
 
