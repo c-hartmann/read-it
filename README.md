@@ -8,7 +8,7 @@ Creates SCAN-0001.png.txt (or SCAN-0001.png.pdf) from SCAN-0001.png
 
 ## Dependency
 
-Read-It utilizes (and checks) tesseract(1). Pleas use your package management system to install.
+Read-It utilizes (and checks) tesseract(1). Please use your package management system to install.
 (the required package might be named 'tesseract-ocr')
 
 If tesseract is not installed, Read-It will either not show up at all or show an error message.
@@ -31,7 +31,6 @@ Create one PDF with multiple pages from a list of image files.
 
 # Changelog
 
-2023-10-03: 0.2.1: removed default TryExec=, replaced by own check, being more verbose on not-install error and success on creation
-2023-10-03: 0.3.0: added option to create a seachable "sandwich" PDF
-2023-10-08: 0.4.0: creates one output file from multiple input files (spec. for PDF output, but TXT as well)
+* 2023-10-03: 0.2.1: removed default TryExec=, replaced by own check, being more verbose on not-install error and success on creation
+* 2023-10-03: 0.3.0: added option to create a seachable "sandwich" PDF
 
