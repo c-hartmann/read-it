@@ -28,3 +28,11 @@ It also roughly overwrites existing extraction files of the same name.
 ## Ideas
 
 Create one PDF with multiple pages from a list of image files.
+
+# Changelog
+
+
+2023-10-03: removed default TryExec=, replaced by own check, being more verbose on not-install error and success on creation
+2023-10-03: added option to create a seachable "sandwich" PDF
+2023-10-08: creates one output file from multiple input files (spec. for PDF output, but TXT as well)
+
