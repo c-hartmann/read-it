@@ -31,8 +31,7 @@ Create one PDF with multiple pages from a list of image files.
 
 # Changelog
 
-
-2023-10-03: removed default TryExec=, replaced by own check, being more verbose on not-install error and success on creation
-2023-10-03: added option to create a seachable "sandwich" PDF
-2023-10-08: creates one output file from multiple input files (spec. for PDF output, but TXT as well)
+2023-10-03: 0.2.0: removed default TryExec=, replaced by own check, being more verbose on not-install error and success on creation
+2023-10-03: 0.3.0: added option to create a seachable "sandwich" PDF
+2023-10-08: 0.4.0: creates one output file from multiple input files (spec. for PDF output, but TXT as well)
 
