@@ -1,0 +1,52 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/all
+Name=Remove Extension
+Icon=edittext-symbolic
+Actions=RemoveExt;
+# Actions=RemoveExt;RemoveExtInteractive;
+TryExec=bash
+
+[Desktop Action RemoveExt]
+Name=Remove Extension
+Name[de]=Erweiterung entfernen
+# Name[fr]=Extraire du texte
+# Name[it]=Estrarre il testo
+# Name[ar]=استخراج النص
+# Name[ch]=提取文本
+# Name[da]=Udtrække tekst
+# Name[et]=Udtrække tekst
+# Name[fi]=Poimia tekstiä
+# Name[ka]=Ტექსტის ამოღება
+# Name[el]=Εξαγωγή κειμένου
+# Name[he]=לחלץ טקסט
+# Name[id]=Ekstrak teks
+# Name[ga]=Sliocht téacs
+# Name[is]=Draga út texta
+# Name[jp]=テキストを抽出する
+# Name[ko]=텍스트 추출
+# Name[lv]=Izvilkt tekstu
+# Name[lt]=Ištraukite tekstą
+# Name[mi]=Tango kupu
+# Name[nl]=Tekst extraheren
+# Name[no]=Trekke ut tekst
+# Name[fa]=Trekke ut tekst
+# Name[pl]=Wyodrębnij tekst
+# Name[pt]=Extrair texto
+# Name[sv]=Extrahera text
+# Name[sk]=Extrahovať text
+# Name[es]=Extraer texto
+# Name[th]=แยกข้อความ
+# Name[cs]=Extrahovat text
+# Name[uk]=Витягти текст
+# Icon=edittext-symbolic
+Icon=filename-dot-amarok-symbolic
+### Local single files only!
+Exec=bash -c 'path="%f"; error_message="Can not remove an extension from this node"; basename="$(basename "${path}")"; if [[ ! -e "${path}" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Node ${path} does not exists" 2>/dev/null; exit 9; fi; if [[ "${basename%.*}x" == "x" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Removing extension from node: ${basename} would create a node with an empty name" 2>/dev/null; exit 2; fi; if [[ -e "${path%.*}" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Removing extension from node: ${basename} would overwrite existing node: ${basename%.*}" 2>/dev/null; exit 1; fi; kdialog --title "Remove Extension" --msgbox "Node ${path##*/} is save to get renamed to ${basename%.*}"; mv "${path}" "${path%.*}"'
+
+[Desktop Action RemoveExtInteractive]
+Name=Remove Extension (Interactive)
+Name[de]=Erweiterung entfernen (Interaktiv)
+Icon=filename-dot-amarok-symbolic
+Exec=bash -c 'path="%f"; error_message="Can not remove an extension from this node"; basename="$(basename "${path}")"; if [[ ! -e "${path}" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Node ${path} does not exists" 2>/dev/null; exit 9; fi; if [[ "${basename%.*}x" == "x" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Removing extension from node: ${basename} would create a node with an empty name" 2>/dev/null; exit 2; fi; if [[ -e "${path%.*}" ]]; then kdialog --title "Remove Extension" --error "${error_message}" "Removing extension from node: ${basename} would overwrite existing node: ${basename%.*}" 2>/dev/null; exit 1; fi; kdialog --title "Remove Extension" --warningcontinuecancel "Rename node: ${path##*/} to: ${basename%.*}" && mv "${path}" "${path%.*}"'
